@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-let selectedTextColor= '#fff';
-let selectedStyle = {
-  color: selectedTextColor,
 
+let selectedStyle = {
+  color: '#fff',
 }
 
 class Aggregate extends Component
@@ -67,7 +65,7 @@ class App extends Component
   { 
     return (
       <div className="App">
-        <h1 style={{width: "10%"}}>
+        <h1 style={{...selectedStyle, 'font-size': '54px'}}>
           Title
         </h1>
 
