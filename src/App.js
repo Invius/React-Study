@@ -90,19 +90,27 @@ class Playlist extends Component
     <div style={{...selectedStyle,display: 'inline-block', width: "25%"}}>
       {/*<img/>*/}
       <h3>
-        Playlist Name
+        {this.props.playlist.name}
       </h3>
-      <ul>
-        <li>
-          Song 1
+      
+        {/*<li>
+          {this.props.playlist.songs[0].name}
         </li>
         <li>
-          Song 2
+          {this.props.playlist.songs[1].name}
         </li>
         <li>
-          Song 3
-        </li>
-      </ul>
+          {this.props.playlist.songs[2].name}
+        </li>*/}
+
+        <ul>
+          {this.props.playlist.songs.map(
+            song=>
+            <li>
+              {song.name}
+            </li>
+          )}
+        </ul>
     </div>);
   }
 }
@@ -113,6 +121,7 @@ class App extends Component
   {
     super();
     this.state = {serverData:{}}
+    //this.state = {bonusData:{}}
   }
 
   render() 
@@ -129,11 +138,12 @@ class App extends Component
             <HoursCount playlists = {this.state.serverData.user.playlists}/>
 
             <Filter/>
+            {
+                this.state.serverData.user.playlists.map(
+                playlist=><Playlist playlist={playlist}/>)
+            }
 
-            <Playlist/>
-            <Playlist/>
-            <Playlist/>
-            <Playlist/>
+       
           </div>: 
           <h1 style={selectedStyle}>
             Loading Assets...
@@ -193,7 +203,7 @@ Exemple:
 ---Tags---
 
  <ClassComponent/>      //The class component can recieve Variables input
- <ClassComponent IntA/> //They are stored within class props
+ <ClassComponent IntA = {intA}/> //They are stored within class props
  
   class ClassComponent extends Component
   {
